@@ -1,0 +1,103 @@
+keyboard types: default, email-address, numeric, phone-pad, number-pad, 
+ascii-capable, numbers-and-punctuation, url, name-phone-pad, decimal-pad,
+		twitter, web-search, ascii-capable-number-pad, visible-password
+
+
+    while($row = mysqli_fetch_assoc($query)){
+        
+        $userData[] = array(
+            "UserId" => $row['id'],
+            "SucMsg" => 'Success',
+            "UserEmail" => $row['email'],
+            "UserPhone" => $row['phone'],
+            "UserCountry" => $row['country'],
+            "UserProvince" => $row['province'],
+            "UserAddres" => $row['address'],
+        );
+        echo json_encode($userData);
+
+
+SOCIAL MEDIA APP DB STRUCTURE
+
+Follow table: 
+columns available include the following; id, follower, following,
+
+message table: 
+columns available includes the following; id, from, to, message
+The 'id' column will be a combination of the sender and receiver id(gotten from users table).
+
+Post table:
+id, post, 4 img cols (max number of images to upload 4), likes, comment
+
+once you follow someone, a row is created for you in the 'message table'. If you later message 
+the person, the message will be updated in the message column in the 'message table'.
+
+How will feeds appear to users? 
+Feeds will come from post from the people you follow OR post will come from viral post
+
+
+
+my todo list
+1. check if user is logged in on app launch
+2. 
+
+
+npm install @react-native-async-storage/async-storage
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+const storeData = async (value) => {
+  try {
+    await AsyncStorage.setItem('@storage_Key', value)
+  } catch (e) {
+    // saving error
+  }
+}
+
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('@storage_Key', jsonValue)
+  } catch (e) {
+    // saving error
+  }
+}
+
+
+const getData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('@storage_Key')
+    if(value !== null) {
+      // value previously stored
+    }
+  } catch(e) {
+    // error reading value
+  }
+}
+
+
+
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@storage_Key')
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch(e) {
+    // error reading value
+  }
+}
+
+
+removeValue = async () => {
+  try {
+    await AsyncStorage.removeItem('@MyApp_key')
+  } catch(e) {
+    // remove error
+  }
+
+  console.log('Done.')
+}
+
+
+
+attachment types: picture, video, document, audio ,
